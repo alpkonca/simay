@@ -168,40 +168,17 @@ function initParallax() {
     });
 }
 
-// Video auto-play when scrolled into view
-function initVideoPlayers() {
-    const videoCards = document.querySelectorAll('.memory-card.has-video');
+// Highlight current card and autoplay video if present
+function initCurrentCardHighlight() {
+    const cards = document.querySelectorAll('.memory-card');
+    let currentHighlighted = null;
     
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            const video = entry.target.querySelector('video');
-            const playBtn = entry.target.querySelector('.play-button');
-            
-            if (!video) return;
-            
-            if (entry.isIntersecting && entry.intersectionRatio >= 0.6) {
-                // Card is mostly visible - play video
-                video.play();
-                if (playBtn) playBtn.style.opacity = '0';
-                entry.target.classList.add('video-playing');
-            } else {
-                // Card is not visible enough - pause video
-                video.pause();
-                if (playBtn) playBtn.style.opacity = '1';
-                entry.target.classList.remove('video-playing');
-            }
-        });
-    }, {
-        threshold: [0, 0.6, 1],
-        rootMargin: '-10% 0px -10% 0px'
-    });
-    
-    videoCards.forEach(card => {
+    // Setup videos
+    document.querySelectorAll('.memory-card.has-video').forEach(card => {
         const video = card.querySelector('video');
         if (video) {
-            // Loop videos
             video.loop = true;
-            video.muted = true; // Must be muted for autoplay to work
+            video.muted = true;
             
             // Click to toggle mute
             card.addEventListener('click', (e) => {
@@ -210,9 +187,70 @@ function initVideoPlayers() {
                 card.classList.toggle('unmuted', !video.muted);
             });
         }
-        
-        observer.observe(card);
     });
+    
+    // Find which card is most centered in viewport
+    function updateHighlightedCard() {
+        const viewportCenter = window.innerHeight / 2;
+        let closestCard = null;
+        let closestDistance = Infinity;
+        
+        cards.forEach(card => {
+            const rect = card.getBoundingClientRect();
+            const cardCenter = rect.top + rect.height / 2;
+            const distance = Math.abs(cardCenter - viewportCenter);
+            
+            // Only consider cards that are at least partially visible
+            if (rect.top < window.innerHeight && rect.bottom > 0) {
+                if (distance < closestDistance) {
+                    closestDistance = distance;
+                    closestCard = card;
+                }
+            }
+        });
+        
+        // Update highlight if changed
+        if (closestCard !== currentHighlighted) {
+            // Remove highlight from previous
+            if (currentHighlighted) {
+                currentHighlighted.classList.remove('is-current');
+                const prevVideo = currentHighlighted.querySelector('video');
+                const prevPlayBtn = currentHighlighted.querySelector('.play-button');
+                if (prevVideo) {
+                    prevVideo.pause();
+                    if (prevPlayBtn) prevPlayBtn.style.opacity = '1';
+                }
+            }
+            
+            // Add highlight to new
+            if (closestCard) {
+                closestCard.classList.add('is-current');
+                const video = closestCard.querySelector('video');
+                const playBtn = closestCard.querySelector('.play-button');
+                if (video) {
+                    video.play();
+                    if (playBtn) playBtn.style.opacity = '0';
+                }
+            }
+            
+            currentHighlighted = closestCard;
+        }
+    }
+    
+    // Update on scroll with throttling
+    let ticking = false;
+    window.addEventListener('scroll', () => {
+        if (!ticking) {
+            requestAnimationFrame(() => {
+                updateHighlightedCard();
+                ticking = false;
+            });
+            ticking = true;
+        }
+    });
+    
+    // Initial check
+    setTimeout(updateHighlightedCard, 500);
 }
 
 // Image loading placeholder
@@ -254,7 +292,7 @@ document.addEventListener('DOMContentLoaded', () => {
     
     // Then initialize animations
     initScrollAnimations();
-    initVideoPlayers();
+    initCurrentCardHighlight();
     initFinalConfetti();
     initParallax();
     initImagePlaceholders();

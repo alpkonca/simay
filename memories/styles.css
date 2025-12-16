@@ -278,36 +278,42 @@ body {
     transform: translate(-50%, -50%) scale(1.1);
 }
 
-/* Video playing state */
-.memory-card.video-playing {
+/* Current/highlighted card - "You are here" indicator */
+.memory-card.is-current {
     transform: scale(1.02);
+    z-index: 10;
 }
 
-.memory-card.video-playing .memory-image {
+.memory-card.is-current .memory-image {
     box-shadow: 0 0 0 3px var(--color-gold), 0 20px 50px rgba(212, 165, 116, 0.3);
 }
 
-/* Mute indicator */
+.memory-card.is-current .memory-content {
+    background: rgba(212, 165, 116, 0.05);
+}
+
+/* Mute indicator for videos */
 .memory-card.has-video .memory-image::after {
-    content: '🔇';
+    content: '🔇 Sesi aç';
     position: absolute;
     bottom: 1rem;
     right: 1rem;
-    font-size: 1.25rem;
-    background: rgba(0, 0, 0, 0.6);
-    padding: 0.5rem;
+    font-size: 0.875rem;
+    background: rgba(0, 0, 0, 0.7);
+    padding: 0.5rem 0.75rem;
     border-radius: 8px;
     opacity: 0;
     transition: opacity 0.3s ease;
     z-index: 5;
+    color: white;
 }
 
-.memory-card.has-video.video-playing .memory-image::after {
+.memory-card.has-video.is-current .memory-image::after {
     opacity: 1;
 }
 
 .memory-card.has-video.unmuted .memory-image::after {
-    content: '🔊';
+    content: '🔊 Ses açık';
 }
 
 .memory-number {
@@ -365,6 +371,28 @@ body {
 .memory-card.disaster .memory-tag {
     background: linear-gradient(135deg, rgba(200, 100, 100, 0.3) 0%, rgba(150, 80, 80, 0.2) 100%);
     color: #e8a0a0;
+}
+
+/* Wide Image - for logos or panoramic images */
+.memory-card.wide-image .memory-image {
+    aspect-ratio: 16/9;
+    background: var(--color-bg-elevated);
+}
+
+.memory-card.wide-image .memory-image img {
+    object-fit: contain;
+    padding: 1rem;
+}
+
+/* Tall Image - for portrait/vertical images */
+.memory-card.tall-image .memory-image {
+    aspect-ratio: 3/4;
+    background: var(--color-bg-elevated);
+}
+
+.memory-card.tall-image .memory-image img {
+    object-fit: contain;
+    padding: 0.5rem;
 }
 
 /* ========================================
