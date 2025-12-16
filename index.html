@@ -1,230 +1,285 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="tr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Simay'ın Hediye Seçici ✨</title>
+    <title>Simay 💝</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Crimson+Pro:wght@300;400;500&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Quicksand:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --color-bg: #0a0a0c;
+            --color-cream: #f5ebe0;
+            --color-gold: #d4a574;
+            --color-rose: #e8b4b8;
+            --color-rose-dark: #c77d8e;
+            --color-text: #f5f0e8;
+            --color-text-muted: #a09a92;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Quicksand', sans-serif;
+            background: var(--color-bg);
+            color: var(--color-text);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        /* Animated background */
+        .bg-gradient {
+            position: fixed;
+            inset: 0;
+            background: 
+                radial-gradient(ellipse at 20% 30%, rgba(232, 180, 184, 0.1) 0%, transparent 50%),
+                radial-gradient(ellipse at 80% 70%, rgba(212, 165, 116, 0.08) 0%, transparent 50%),
+                radial-gradient(ellipse at 50% 50%, rgba(199, 125, 142, 0.05) 0%, transparent 70%);
+            animation: bgPulse 8s ease-in-out infinite alternate;
+        }
+
+        @keyframes bgPulse {
+            0% { opacity: 0.8; }
+            100% { opacity: 1; }
+        }
+
+        /* Floating hearts */
+        .hearts-container {
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            overflow: hidden;
+        }
+
+        .floating-heart {
+            position: absolute;
+            font-size: 1.5rem;
+            opacity: 0.15;
+            animation: floatHeart 15s ease-in-out infinite;
+        }
+
+        @keyframes floatHeart {
+            0%, 100% { transform: translateY(100vh) rotate(0deg); opacity: 0; }
+            10% { opacity: 0.15; }
+            90% { opacity: 0.15; }
+            100% { transform: translateY(-100vh) rotate(360deg); opacity: 0; }
+        }
+
+        .container {
+            text-align: center;
+            padding: 2rem;
+            position: relative;
+            z-index: 1;
+            max-width: 600px;
+        }
+
+        .anniversary-badge {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--color-rose) 0%, var(--color-rose-dark) 100%);
+            color: var(--color-bg);
+            padding: 0.5rem 1.5rem;
+            border-radius: 100px;
+            font-size: 0.875rem;
+            font-weight: 600;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            margin-bottom: 2rem;
+            animation: fadeInDown 1s ease-out;
+        }
+
+        h1 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: clamp(3rem, 10vw, 5rem);
+            font-weight: 400;
+            line-height: 1.1;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, var(--color-cream) 0%, var(--color-rose) 50%, var(--color-gold) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: fadeInUp 1s ease-out 0.2s both;
+        }
+
+        .subtitle {
+            font-size: 1.125rem;
+            color: var(--color-text-muted);
+            margin-bottom: 3rem;
+            font-weight: 300;
+            animation: fadeInUp 1s ease-out 0.4s both;
+        }
+
+        .paths {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            animation: fadeInUp 1s ease-out 0.6s both;
+        }
+
+        .path-card {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 24px;
+            padding: 2.5rem 2rem;
+            width: 220px;
+            text-decoration: none;
+            color: inherit;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .path-card::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, rgba(232, 180, 184, 0.1) 0%, rgba(212, 165, 116, 0.1) 100%);
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+
+        .path-card:hover {
+            transform: translateY(-8px);
+            border-color: rgba(232, 180, 184, 0.3);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        .path-card:hover::before {
+            opacity: 1;
+        }
+
+        .path-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            display: block;
+        }
+
+        .path-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            position: relative;
+        }
+
+        .path-desc {
+            font-size: 0.875rem;
+            color: var(--color-text-muted);
+            position: relative;
+        }
+
+        .path-card.memories .path-icon {
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .footer-note {
+            position: fixed;
+            bottom: 2rem;
+            left: 0;
+            right: 0;
+            text-align: center;
+            font-size: 0.875rem;
+            color: var(--color-text-muted);
+            opacity: 0.6;
+        }
+
+        .footer-note span {
+            color: var(--color-rose);
+        }
+
+        @media (max-width: 500px) {
+            .paths {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .path-card {
+                width: 100%;
+                max-width: 280px;
+            }
+        }
+    </style>
 </head>
 <body>
-    <div class="background-pattern"></div>
+    <div class="bg-gradient"></div>
     
-    <!-- Welcome Screen -->
-    <section id="welcome-screen" class="screen active">
-        <div class="container">
-            <div class="welcome-content">
-                <span class="sparkle">✨</span>
-                <h1>Merhaba Yavrum</h1>
-                <p class="subtitle">💝Begenebilecegin Saatleri Bir Araya Topladim, Simdi Sira Sende💝</p>
-                    <p class="subtitle">(Saatlerin hepsi ornek, hicbirini begenmedim de bir opsiyon!! Saatlerin hepsini kucuk secmeye calistim. Yuvarlak olanlar bile kucuk senin istedigin gibi.) </p>
-                <button class="btn btn-primary" onclick="startRating()">
-                    <span>Başla</span>
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <path d="M5 12h14M12 5l7 7-7 7"/>
-                    </svg>
-                </button>
-            </div>
+    <div class="hearts-container" id="hearts"></div>
+
+    <div class="container">
+        <div class="anniversary-badge">1. Yılımız 💕</div>
+        
+        <h1>Merhaba Aşkım</h1>
+        
+        <p class="subtitle">Seninle geçirdiğim bu muhteşem yılı kutlamak için sana küçük bir sürpriz hazırladım</p>
+
+        <div class="paths">
+            <a href="memories/index.html" class="path-card memories">
+                <span class="path-icon">📸</span>
+                <div class="path-title">Anılarımız</div>
+                <div class="path-desc">Birlikte yaşadıklarımız</div>
+            </a>
+            
+            <a href="gift/index.html" class="path-card gift">
+                <span class="path-icon">🎁</span>
+                <div class="path-title">Hediye Seç</div>
+                <div class="path-desc">Senin için bir sürpriz</div>
+            </a>
         </div>
-    </section>
+    </div>
 
-    <!-- Rating Screen -->
-    <section id="rating-screen" class="screen">
-        <div class="container">
-            <header class="rating-header">
-                <div class="progress-info">
-                    <span id="current-index">1</span> / <span id="total-count">0</span>
-                </div>
-                <div class="round-badge" id="round-badge">1. Tur</div>
-            </header>
+    <div class="footer-note">
+        Seni <span>♥</span> seviyorum
+    </div>
 
-            <div class="card-container">
-                <div class="card" id="current-card">
-                    <div class="card-image-wrapper">
-                        <img id="current-image" src="" alt="Saat">
-                    </div>
-                    <div class="card-name" id="current-name"></div>
-                </div>
-            </div>
-
-            <div class="rating-buttons">
-                <button class="rating-btn no" onclick="rate('no')" data-tooltip="Hiç değil">
-                    <span class="icon">✕</span>
-                    <span class="label">Hayır</span>
-                </button>
-                <button class="rating-btn maybe" onclick="rate('maybe')" data-tooltip="Belki olabilir">
-                    <span class="icon">?</span>
-                    <span class="label">Belki</span>
-                </button>
-                <button class="rating-btn yes" onclick="rate('yes')" data-tooltip="Beğendim">
-                    <span class="icon">♡</span>
-                    <span class="label">Evet</span>
-                </button>
-                <button class="rating-btn definitely" onclick="rate('definitely')" data-tooltip="Bayıldım!">
-                    <span class="icon">★</span>
-                    <span class="label">Kesinlikle!</span>
-                </button>
-            </div>
-        </div>
-    </section>
-
-    <!-- Round Complete Screen -->
-    <section id="round-complete-screen" class="screen">
-        <div class="container">
-            <div class="round-complete-content">
-                <h2 id="round-complete-title">Tur Tamamlandı!</h2>
-                <div class="stats-grid">
-                    <div class="stat-card">
-                        <span class="stat-icon">✕</span>
-                        <span class="stat-number" id="stat-no">0</span>
-                        <span class="stat-label">Hayır</span>
-                    </div>
-                    <div class="stat-card">
-                        <span class="stat-icon">?</span>
-                        <span class="stat-number" id="stat-maybe">0</span>
-                        <span class="stat-label">Belki</span>
-                    </div>
-                    <div class="stat-card">
-                        <span class="stat-icon">♡</span>
-                        <span class="stat-number" id="stat-yes">0</span>
-                        <span class="stat-label">Evet</span>
-                    </div>
-                    <div class="stat-card">
-                        <span class="stat-icon">★</span>
-                        <span class="stat-number" id="stat-definitely">0</span>
-                        <span class="stat-label">Kesinlikle</span>
-                    </div>
-                </div>
-                <p class="round-message" id="round-message"></p>
-                <div class="round-actions">
-                    <button class="btn btn-secondary" onclick="resetAll()">Baştan Başla</button>
-                    <button class="btn btn-primary" id="next-action-btn" onclick="nextRound()">
-                        <span>Devam Et</span>
-                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <path d="M5 12h14M12 5l7 7-7 7"/>
-                        </svg>
-                    </button>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Tournament Screen -->
-    <section id="tournament-screen" class="screen">
-        <div class="container">
-            <header class="tournament-header">
-                <h2>Final Kapışması 🔥</h2>
-                <div class="tournament-progress">
-                    <span id="remaining-count">0</span> aday kaldı
-                </div>
-            </header>
-
-            <div class="tournament-arena">
-                <div class="tournament-card left" id="tournament-left" onclick="pickWinner('left')">
-                    <div class="card-image-wrapper">
-                        <img id="tournament-img-left" src="" alt="Seçenek A">
-                    </div>
-                    <div class="card-name" id="tournament-name-left"></div>
-                    <div class="pick-overlay">Bunu Seç</div>
-                </div>
-
-                <div class="vs-badge">VS</div>
-
-                <div class="tournament-card right" id="tournament-right" onclick="pickWinner('right')">
-                    <div class="card-image-wrapper">
-                        <img id="tournament-img-right" src="" alt="Seçenek B">
-                    </div>
-                    <div class="card-name" id="tournament-name-right"></div>
-                    <div class="pick-overlay">Bunu Seç</div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Winner Screen -->
-    <section id="winner-screen" class="screen">
-        <div class="container results-container">
-            <div class="winner-content">
-                <div class="confetti-container" id="confetti"></div>
-                <span class="crown">👑</span>
-                <h2>Potansiyel Hediyen!</h2>
-                <div class="winner-card">
-                    <div class="card-image-wrapper">
-                        <img id="winner-image" src="" alt="Winner">
-                    </div>
-                    <div class="winner-name" id="winner-name"></div>
-                </div>
-                <p class="winner-message">İşte en beğendiğin saat! 🎉</p>
-                
-                <!-- Tabs Navigation -->
-                <div class="tabs-container">
-                    <div class="tabs-nav">
-                        <button class="tab-btn active" data-tab="leaderboard">
-                            <span class="tab-icon">🏆</span>
-                            <span class="tab-label">Sıralama</span>
-                        </button>
-                        <button class="tab-btn" data-tab="definitely">
-                            <span class="tab-icon">★</span>
-                            <span class="tab-label">Kesinlikle</span>
-                            <span class="tab-count" id="tab-count-definitely">0</span>
-                        </button>
-                        <button class="tab-btn" data-tab="yes">
-                            <span class="tab-icon">♡</span>
-                            <span class="tab-label">Evet</span>
-                            <span class="tab-count" id="tab-count-yes">0</span>
-                        </button>
-                        <button class="tab-btn" data-tab="maybe">
-                            <span class="tab-icon">?</span>
-                            <span class="tab-label">Belki</span>
-                            <span class="tab-count" id="tab-count-maybe">0</span>
-                        </button>
-                        <button class="tab-btn" data-tab="no">
-                            <span class="tab-icon">✕</span>
-                            <span class="tab-label">Hayır</span>
-                            <span class="tab-count" id="tab-count-no">0</span>
-                        </button>
-                    </div>
-                    
-                    <!-- Tab Content -->
-                    <div class="tabs-content">
-                        <div class="tab-panel active" id="panel-leaderboard">
-                            <div class="leaderboard-list" id="leaderboard-list">
-                                <!-- Populated by JS -->
-                            </div>
-                        </div>
-                        <div class="tab-panel" id="panel-definitely">
-                            <div class="rating-grid" id="grid-definitely">
-                                <!-- Populated by JS -->
-                            </div>
-                        </div>
-                        <div class="tab-panel" id="panel-yes">
-                            <div class="rating-grid" id="grid-yes">
-                                <!-- Populated by JS -->
-                            </div>
-                        </div>
-                        <div class="tab-panel" id="panel-maybe">
-                            <div class="rating-grid" id="grid-maybe">
-                                <!-- Populated by JS -->
-                            </div>
-                        </div>
-                        <div class="tab-panel" id="panel-no">
-                            <div class="rating-grid" id="grid-no">
-                                <!-- Populated by JS -->
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
-                <button class="btn btn-primary" onclick="resetAll()">
-                    <span>Tekrar Başla</span>
-                </button>
-            </div>
-        </div>
-    </section>
-
-    <script src="app.js"></script>
+    <script>
+        // Create floating hearts
+        const heartsContainer = document.getElementById('hearts');
+        const heartSymbols = ['♥', '♡', '❤', '💕'];
+        
+        for (let i = 0; i < 15; i++) {
+            const heart = document.createElement('div');
+            heart.className = 'floating-heart';
+            heart.textContent = heartSymbols[Math.floor(Math.random() * heartSymbols.length)];
+            heart.style.left = Math.random() * 100 + '%';
+            heart.style.animationDelay = Math.random() * 15 + 's';
+            heart.style.animationDuration = (15 + Math.random() * 10) + 's';
+            heartsContainer.appendChild(heart);
+        }
+    </script>
 </body>
 </html>
-

@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simay'ın Hediye Seçici ✨</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Crimson+Pro:wght@300;400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="background-pattern"></div>
+    
+    <!-- Welcome Screen -->
+    <section id="welcome-screen" class="screen active">
+        <div class="container">
+            <div class="welcome-content">
+                <span class="sparkle">✨</span>
+                <h1>Merhaba Yavrum</h1>
+                <p class="subtitle">💝Begenebilecegin Saatleri Bir Araya Topladim, Simdi Sira Sende💝</p>
+                    <p class="subtitle">(Saatlerin hepsi ornek, hicbirini begenmedim de bir opsiyon!! Saatlerin hepsini kucuk secmeye calistim. Yuvarlak olanlar bile kucuk senin istedigin gibi.) </p>
+                <button class="btn btn-primary" onclick="startRating()">
+                    <span>Başla</span>
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M5 12h14M12 5l7 7-7 7"/>
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Rating Screen -->
+    <section id="rating-screen" class="screen">
+        <div class="container">
+            <header class="rating-header">
+                <div class="progress-info">
+                    <span id="current-index">1</span> / <span id="total-count">0</span>
+                </div>
+                <div class="round-badge" id="round-badge">1. Tur</div>
+            </header>
+
+            <div class="card-container">
+                <div class="card" id="current-card">
+                    <div class="card-image-wrapper">
+                        <img id="current-image" src="" alt="Saat">
+                    </div>
+                    <div class="card-name" id="current-name"></div>
+                </div>
+            </div>
+
+            <div class="rating-buttons">
+                <button class="rating-btn no" onclick="rate('no')" data-tooltip="Hiç değil">
+                    <span class="icon">✕</span>
+                    <span class="label">Hayır</span>
+                </button>
+                <button class="rating-btn maybe" onclick="rate('maybe')" data-tooltip="Belki olabilir">
+                    <span class="icon">?</span>
+                    <span class="label">Belki</span>
+                </button>
+                <button class="rating-btn yes" onclick="rate('yes')" data-tooltip="Beğendim">
+                    <span class="icon">♡</span>
+                    <span class="label">Evet</span>
+                </button>
+                <button class="rating-btn definitely" onclick="rate('definitely')" data-tooltip="Bayıldım!">
+                    <span class="icon">★</span>
+                    <span class="label">Kesinlikle!</span>
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Round Complete Screen -->
+    <section id="round-complete-screen" class="screen">
+        <div class="container">
+            <div class="round-complete-content">
+                <h2 id="round-complete-title">Tur Tamamlandı!</h2>
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <span class="stat-icon">✕</span>
+                        <span class="stat-number" id="stat-no">0</span>
+                        <span class="stat-label">Hayır</span>
+                    </div>
+                    <div class="stat-card">
+                        <span class="stat-icon">?</span>
+                        <span class="stat-number" id="stat-maybe">0</span>
+                        <span class="stat-label">Belki</span>
+                    </div>
+                    <div class="stat-card">
+                        <span class="stat-icon">♡</span>
+                        <span class="stat-number" id="stat-yes">0</span>
+                        <span class="stat-label">Evet</span>
+                    </div>
+                    <div class="stat-card">
+                        <span class="stat-icon">★</span>
+                        <span class="stat-number" id="stat-definitely">0</span>
+                        <span class="stat-label">Kesinlikle</span>
+                    </div>
+                </div>
+                <p class="round-message" id="round-message"></p>
+                <div class="round-actions">
+                    <button class="btn btn-secondary" onclick="resetAll()">Baştan Başla</button>
+                    <button class="btn btn-primary" id="next-action-btn" onclick="nextRound()">
+                        <span>Devam Et</span>
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M5 12h14M12 5l7 7-7 7"/>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Tournament Screen -->
+    <section id="tournament-screen" class="screen">
+        <div class="container">
+            <header class="tournament-header">
+                <h2>Final Kapışması 🔥</h2>
+                <div class="tournament-progress">
+                    <span id="remaining-count">0</span> aday kaldı
+                </div>
+            </header>
+
+            <div class="tournament-arena">
+                <div class="tournament-card left" id="tournament-left" onclick="pickWinner('left')">
+                    <div class="card-image-wrapper">
+                        <img id="tournament-img-left" src="" alt="Seçenek A">
+                    </div>
+                    <div class="card-name" id="tournament-name-left"></div>
+                    <div class="pick-overlay">Bunu Seç</div>
+                </div>
+
+                <div class="vs-badge">VS</div>
+
+                <div class="tournament-card right" id="tournament-right" onclick="pickWinner('right')">
+                    <div class="card-image-wrapper">
+                        <img id="tournament-img-right" src="" alt="Seçenek B">
+                    </div>
+                    <div class="card-name" id="tournament-name-right"></div>
+                    <div class="pick-overlay">Bunu Seç</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Winner Screen -->
+    <section id="winner-screen" class="screen">
+        <div class="container results-container">
+            <div class="winner-content">
+                <div class="confetti-container" id="confetti"></div>
+                <span class="crown">👑</span>
+                <h2>Potansiyel Hediyen!</h2>
+                <div class="winner-card">
+                    <div class="card-image-wrapper">
+                        <img id="winner-image" src="" alt="Winner">
+                    </div>
+                    <div class="winner-name" id="winner-name"></div>
+                </div>
+                <p class="winner-message">İşte en beğendiğin saat! 🎉</p>
+                
+                <!-- Tabs Navigation -->
+                <div class="tabs-container">
+                    <div class="tabs-nav">
+                        <button class="tab-btn active" data-tab="leaderboard">
+                            <span class="tab-icon">🏆</span>
+                            <span class="tab-label">Sıralama</span>
+                        </button>
+                        <button class="tab-btn" data-tab="definitely">
+                            <span class="tab-icon">★</span>
+                            <span class="tab-label">Kesinlikle</span>
+                            <span class="tab-count" id="tab-count-definitely">0</span>
+                        </button>
+                        <button class="tab-btn" data-tab="yes">
+                            <span class="tab-icon">♡</span>
+                            <span class="tab-label">Evet</span>
+                            <span class="tab-count" id="tab-count-yes">0</span>
+                        </button>
+                        <button class="tab-btn" data-tab="maybe">
+                            <span class="tab-icon">?</span>
+                            <span class="tab-label">Belki</span>
+                            <span class="tab-count" id="tab-count-maybe">0</span>
+                        </button>
+                        <button class="tab-btn" data-tab="no">
+                            <span class="tab-icon">✕</span>
+                            <span class="tab-label">Hayır</span>
+                            <span class="tab-count" id="tab-count-no">0</span>
+                        </button>
+                    </div>
+                    
+                    <!-- Tab Content -->
+                    <div class="tabs-content">
+                        <div class="tab-panel active" id="panel-leaderboard">
+                            <div class="leaderboard-list" id="leaderboard-list">
+                                <!-- Populated by JS -->
+                            </div>
+                        </div>
+                        <div class="tab-panel" id="panel-definitely">
+                            <div class="rating-grid" id="grid-definitely">
+                                <!-- Populated by JS -->
+                            </div>
+                        </div>
+                        <div class="tab-panel" id="panel-yes">
+                            <div class="rating-grid" id="grid-yes">
+                                <!-- Populated by JS -->
+                            </div>
+                        </div>
+                        <div class="tab-panel" id="panel-maybe">
+                            <div class="rating-grid" id="grid-maybe">
+                                <!-- Populated by JS -->
+                            </div>
+                        </div>
+                        <div class="tab-panel" id="panel-no">
+                            <div class="rating-grid" id="grid-no">
+                                <!-- Populated by JS -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <button class="btn btn-primary" onclick="resetAll()">
+                    <span>Tekrar Başla</span>
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Back Button -->
+    <a href="../index.html" class="back-button">← Ana Sayfa</a>
+
+    <script src="app.js"></script>
+</body>
+</html>
+

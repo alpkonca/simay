@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Anılarımız 💕</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Quicksand:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-bg"></div>
+        <div class="hero-content">
+            <div class="hero-date">365 Gün</div>
+            <h1>Seninle Geçen<br>Bir Yıl</h1>
+            <p class="hero-subtitle">Her anı, her gülüş, her macera...</p>
+            <div class="scroll-indicator">
+                <span>Kaydır</span>
+                <div class="scroll-arrow">↓</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Timeline (Generated from memories-data.js) -->
+    <section class="timeline-section">
+        <div class="timeline" id="timeline">
+            <!-- Memory cards will be generated here by JavaScript -->
+        </div>
+    </section>
+
+    <!-- Songs Section -->
+    <section class="songs-section">
+        <div class="section-header">
+            <h2>Şarkılarımız 🎵</h2>
+            <p>Her biri bir anı...</p>
+        </div>
+        <div class="songs-list" id="songs-list">
+            <!-- Songs will be generated here by JavaScript -->
+        </div>
+    </section>
+
+    <!-- Final Message -->
+    <section class="final-message">
+        <div class="final-content">
+            <div class="heart-animation">💕</div>
+            <h2 id="final-title">1. Yılımız Kutlu Olsun</h2>
+            <p id="final-p1"></p>
+            <p class="highlight" id="final-p2"></p>
+            <div class="signature" id="final-signature"></div>
+        </div>
+        <div class="confetti-container" id="final-confetti"></div>
+    </section>
+
+    <!-- Back Button -->
+    <a href="../index.html" class="back-button">← Ana Sayfa</a>
+
+    <!-- Data file (EDIT THIS FILE to change texts!) -->
+    <script src="memories-data.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
