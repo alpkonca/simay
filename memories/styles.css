@@ -332,7 +332,18 @@ body {
 
 .memory-content {
     flex: 1;
-    padding: 1rem 0;
+    padding: 1rem 2rem;
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+}
+
+/* Keep content on its side of the timeline */
+.memory-card:nth-child(odd) .memory-content {
+    padding-right: 3rem;
+}
+
+.memory-card:nth-child(even) .memory-content {
+    padding-left: 3rem;
 }
 
 .memory-tag {

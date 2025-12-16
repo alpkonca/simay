@@ -317,7 +317,7 @@ const MEMORIES_DATA = {
             id: 31,
             chapter: "insiders",
             photo: "31-mcdonalds.jpeg",
-            tag: "İçeriden 🍔",
+            tag: "Insider 🍔",
             title: "McDonald's",
             description: "Hiçbir şey demeye gerek duymuyorum",
             style: "tall-image"
@@ -326,16 +326,16 @@ const MEMORIES_DATA = {
             id: 32,
             chapter: "insiders",
             photo: "32-red-string.png",
-            tag: "İçeriden 🧵",
+            tag: "Insider 🧵",
             title: "Red String Theory",
-            description: "Bu da senin bana kattığın bir konsept oldu, kesinlikle de katılıyorum",
+            description: "Bu da senin bana kattığın bir konsept oldu, beni çok duygulandırmıştı, özellikle kırmızı güllerle olan o not",
             style: "insider"
         },
         {
             id: 33,
             chapter: "insiders",
             photo: "33-surprise-egg.jpeg",
-            tag: "İçeriden 🥚",
+            tag: "Insider 🥚",
             title: "Sürpriz Yumurta",
             description: "Ne kadar sonuncuların pabucu dama da atılsa başta çok mutlu olmuştun. Ah ah toparlak senin değerini bilemediler🧸",
             style: "tall-image"
@@ -344,7 +344,7 @@ const MEMORIES_DATA = {
             id: 34,
             chapter: "insiders",
             photo: "34-car.jpeg",
-            tag: "İçeriden 🚗",
+            tag: "Insider 🚗",
             title: "Benim Arabam",
             description: "Bu kıskançlık ilişkisi yaşadığın, bir yıldır gizli gizli başına kötü şeyler gelmesini beklediğin arabam... Tabii ki de dahil edecektim. Yoksa o kaza senin bedduanla mı oldu?",
             style: "tall-image"
@@ -353,7 +353,7 @@ const MEMORIES_DATA = {
             id: 35,
             chapter: "insiders",
             video: "35-snoring.mp4",
-            tag: "İçeriden 😴",
+            tag: "Insider 😴",
             title: "Horlaması",
             description: "Aslanım kaplanım benim :) Daha bir de ilk birlikte uyuduğumuz zamanlardan",
             style: "tall-image"
@@ -362,7 +362,7 @@ const MEMORIES_DATA = {
             id: 36,
             chapter: "insiders",
             photo: "36-shirt.jpeg",
-            tag: "İçeriden 👕",
+            tag: "Insider 👕",
             title: "O Tişört",
             description: "Hediye ettim, hiç giymedin... Hala bekliyorum! 💔",
             style: "tall-image"
@@ -371,7 +371,7 @@ const MEMORIES_DATA = {
             id: 37,
             chapter: "insiders",
             photo: "37-double-chin.jpeg",
-            tag: "İçeriden 🤳",
+            tag: "Insider 🤳",
             title: "GIDIII",
             description: "GIDIII",
             style: "tall-image"
@@ -380,7 +380,7 @@ const MEMORIES_DATA = {
             id: 40,
             chapter: "insiders",
             photo: "37-double-chin2.jpeg",
-            tag: "İçeriden 🤳",
+            tag: "Insider 🤳",
             title: "GIDIIIII 2",
             description: "O kadar kudretli bir gıdı ki tek foto yetmedi",
             style: "tall-image"
@@ -389,7 +389,7 @@ const MEMORIES_DATA = {
             id: 38,
             chapter: "insiders",
             photo: "38-that-day.jpeg",
-            tag: "İçeriden 📅",
+            tag: "Insider 📅",
             title: "O Gün",
             description: "O gün. 👀",
             style: "insider"
