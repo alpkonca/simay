@@ -267,6 +267,21 @@
     </div>
 
     <script>
+        // ========== REVEAL DATE - Change this to your anniversary! ==========
+        const REVEAL_DATE = new Date('2025-12-21'); // Format: YYYY-MM-DD
+        // =====================================================================
+        
+        // Hide memories until reveal date
+        const today = new Date();
+        today.setHours(0, 0, 0, 0); // Reset time for date-only comparison
+        
+        if (today < REVEAL_DATE) {
+            const memoriesCard = document.querySelector('.path-card.memories');
+            if (memoriesCard) {
+                memoriesCard.style.display = 'none';
+            }
+        }
+        
         // Create floating hearts
         const heartsContainer = document.getElementById('hearts');
         const heartSymbols = ['♥', '♡', '❤', '💕'];
