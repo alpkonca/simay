@@ -214,7 +214,7 @@ const MEMORIES_DATA = {
             id: 21,
             chapter: "adventures",
             photo: "21-fethiye-cowboy.jpeg",
-            tag: "Kovboy Zamanı 🤠",
+            tag: "Kovboy Zamanı 🤠", 
             title: "Fethiye Kovboyları",
             description: "Bebeğimin en sevdiği fotolarımızdan, istersen bir sonraki seferimizde kovboy kılığına girebilirim :D",
             style: ""
